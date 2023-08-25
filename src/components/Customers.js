@@ -18,6 +18,12 @@ class Customers extends Component {
     };
   }
 
+  componentDidUpdate() {
+    if (this.props.customers.length === 0) {
+      throw new Error('No customers!');
+    }
+  }
+
   toggleCustomersHandler() {
     this.setState((curState) => {
       return {showCustomers: !curState.showCustomers};
@@ -37,7 +43,7 @@ class Customers extends Component {
     return (
       <div className={styles.customers}>
         <button onClick={this.toggleCustomersHandler.bind(this)}>
-          {this.state.showCustomers ? "Спрятать" : "Показать"} Заказчиков
+          {this.state.showCustomers ? "Show" : "Hide"} Customers
         </button>
         {this.state.showCustomers && customersList}
       </div>
